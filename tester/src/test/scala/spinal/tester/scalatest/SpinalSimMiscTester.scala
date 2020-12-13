@@ -63,8 +63,8 @@ object SpinalSimTester{
 
   def apply(body :  => SpinalSimTester => Unit): Unit = {
     body(SpinalSimTesterGhdl)
-    body(SpinalSimTesterIVerilog)
-    body(SpinalSimTesterVerilator)
+//    body(SpinalSimTesterIVerilog)
+//    body(SpinalSimTesterVerilator)
   }
 }
 
@@ -101,11 +101,19 @@ class SpinalSimFunSuite extends FunSuite{
   }
 }
 
+object Run {
+  def main(args: Array[String]): Unit = {
+    val s = new SpinalSimMiscTester
+    s.execute(fullstacks = true)
+  }
+}
+
 class SpinalSimMiscTester extends FunSuite {
   SpinalSimTester { env =>
     import env._
     var compiled: SimCompiled[tester.scalatest.SpinalSimMiscTester.SpinalSimMiscTesterCounter] = null
 
+    /*
     test(prefix + "testForkSensitive") {
       SimConfig.compile(new Component {
         val a, b = in UInt (8 bits)
@@ -126,6 +134,8 @@ class SpinalSimMiscTester extends FunSuite {
         }
       }
     }
+
+     */
 
 
     test(prefix + "compile") {
@@ -168,13 +178,14 @@ class SpinalSimMiscTester extends FunSuite {
       }
     }
 
-    doStdtest(prefix + "testStd1")
-    doStdtest(prefix + "testStd2")
-    doStdtest(prefix + "testStd3")
-    doStdTestUnnamed("testStd4")
-    doStdTestUnnamed("testStd5")
-    doStdTestUnnamed("testStd6")
+//    doStdtest(prefix + "testStd1")
+//    doStdtest(prefix + "testStd2")
+//    doStdtest(prefix + "testStd3")
+//    doStdTestUnnamed("testStd4")
+//    doStdTestUnnamed("testStd5")
+//    doStdTestUnnamed("testStd6")
 
+    /*
 
     test(prefix + "testSimSuccess") {
       compiled.doSim(dut => {
@@ -400,6 +411,8 @@ class SpinalSimMiscTester extends FunSuite {
         assert(dut.z.toBigInt == BigInt("12345678123456781234567812345678", 16))
       }
     }
+
+     */
 
   }
 }

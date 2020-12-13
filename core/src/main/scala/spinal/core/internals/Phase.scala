@@ -166,7 +166,7 @@ class PhaseContext(val config: SpinalConfig) {
   }
 
   def checkGlobalData(): Unit = {
-    if (GlobalData.get.dslScope.nonEmpty) SpinalError("dslScope stack is not empty :(")
+    if (GlobalData.get.dslScope.nonEmpty) SpinalError("dslScope stack is not empty :(" + GlobalData.get.dslScope)
     if (GlobalData.get.dslClockDomain.nonEmpty) SpinalError("dslClockDomain stack is not empty :(")
   }
 
